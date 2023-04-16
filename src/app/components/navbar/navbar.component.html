@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top px-3"
+	style="display: flex; justify-content: space-between;">
+	<a class="navbar-brand" href="#"><img src="../assets/img/logo.png" style="width: 130px"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+		aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div>
+		<button class="btn btn-success my-2 my-sm-0" (click)="open(content)">Nueva aplicación <fa-icon
+				[icon]="faPlus"></fa-icon></button>
+	</div>
+</nav>
+
+<!--Modal nueva aplicacion -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Nueva aplicacion</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-4">
+				<img id="formImagenApp" class="img-fluid" src="../assets/img/app-icons/null.png">
+			</div>
+			<div class="col-8">
+				<form id="form-app">
+					Icono: 
+					<select class="form-control" [(ngModel)]="iconoAplicacion" name="icono" id="icono">
+						<option *ngFor="let n of getRange(50)" [value]="'img/app-icons/'+ n +'.webp'">{{n}}.webp</option>
+					</select>
+
+					<input class="form-control" [(ngModel)]="nombreAplicacion" type="text" name="nombre" id="nombre" placeholder="Nombre aplicación">
+
+					<textarea class="form-control" [(ngModel)]="descripcionAplicacion" type="text" name="descripcion" id="descripcion" placeholder="Descripción"></textarea>
+
+					<input class="form-control" [(ngModel)]="desarrolladorAplicacion" type="text" name="desarrollador" id="desarrollador" placeholder="Desarrollador">
+
+					<input class="form-control" [(ngModel)]="precioAplicacion" type="text" name="precio" id="precio" placeholder="Precio">
+
+					<!-- <input class="form-control" type="text" name="descargas" id="descargas" placeholder="Descargas">
+					<input class="form-control" type="text" name="calificacion" id="calificacion" placeholder="Calificacion"> -->
+
+				</form>
+			</div>
+		</div>
+		<div id="estrellas-app" class="text-center">
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-success" (click)="guardaAplicacion()">Guardar</button>
+	</div>
+</ng-template><!--Modal nueva aplicacion -->
+
